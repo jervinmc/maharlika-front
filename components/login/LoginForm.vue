@@ -96,6 +96,7 @@ export default {
         const response = await this.$auth.loginWith("local", {
           data: this.users,
         });
+        if(this.$auth.user.account_type=='Admin') location = '/admin/book'
       } catch (error) {
         alert('Wrong credentials')
         this.isLoaded = false;

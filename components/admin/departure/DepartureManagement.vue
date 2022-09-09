@@ -37,11 +37,11 @@
             <v-row>
               <v-col>
                 Location
-                <v-text-field
+                <v-select
+                  :items="trip_selection"
                   outlined
-                  :rules="standardRules"
                   v-model="departure.location"
-                ></v-text-field>
+                ></v-select>
               </v-col>
               <v-col>
                 Price
@@ -157,6 +157,23 @@ export default {
   },
   data() {
     return {
+      trip_selection: [
+        "Banago",
+        "Batangas",
+        "Bredco",
+        "Bulalacao",
+        "Calapan",
+        "Caluya",
+        "Caticlan",
+        "Cebu",
+        "Dapdap",
+        "Dapitan",
+        "Dumaguette",
+        "Dumangas",
+        "ilo-ilo",
+        "Liloan",
+        "Lipata",
+      ],
       ...validations,
       isValid: false,
       isConfirmation: false,

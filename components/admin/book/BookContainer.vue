@@ -37,11 +37,11 @@
             <v-row>
               <v-col>
                 Location
-                <v-text-field
+                <v-select
+                  :items="trip_selection"
                   outlined
-                  :rules="standardRules"
                   v-model="departure.location"
-                ></v-text-field>
+                ></v-select>
               </v-col>
               <v-col>
                 Price
@@ -85,7 +85,7 @@
       </v-col>
       <v-spacer></v-spacer>
       <v-col align-self="center" align="end" class="pr-10">
-        <v-btn
+        <!-- <v-btn
           class="rnd-btn"
           rounded
           large
@@ -96,7 +96,7 @@
           @click="openForm"
         >
           <span class="text-none">Add Departure</span>
-        </v-btn>
+        </v-btn> -->
       </v-col>
     </v-row>
     <v-data-table
@@ -179,6 +179,23 @@ export default {
         location: "",
         package_name: "",
       },
+      trip_selection: [
+        "Banago",
+        "Batangas",
+        "Bredco",
+        "Bulalacao",
+        "Calapan",
+        "Caluya",
+        "Caticlan",
+        "Cebu",
+        "Dapdap",
+        "Dapitan",
+        "Dumaguette",
+        "Dumangas",
+        "ilo-ilo",
+        "Liloan",
+        "Lipata",
+      ],
       headers: [
         { text: "ID", value: "id" },
         { text: "Firstname", value: "firstname" },
@@ -196,13 +213,16 @@ export default {
   methods: {
     async updateStatus(item, status) {
       try {
-        var id = cloneDeep(item.id)
-        var stat = cloneDeep(status)
-        await this.$store.dispatch("book/updateBookStatus",{"id":item.id,"status":stat});
-        this.loadItem()
-        alert('Successfully Updated!')
+        var id = cloneDeep(item.id);
+        var stat = cloneDeep(status);
+        await this.$store.dispatch("book/updateBookStatus", {
+          id: item.id,
+          status: stat,
+        });
+        this.loadItem();
+        alert("Successfully Updated!");
       } catch (error) {
-        alert(error)
+        alert(error);
       }
     },
     cancelForm() {
@@ -234,7 +254,7 @@ export default {
       try {
         await this.$store.dispatch("book/viewBook", {});
       } catch (error) {
-        alert(error)
+        alert(error);
       }
     },
     cancel() {},

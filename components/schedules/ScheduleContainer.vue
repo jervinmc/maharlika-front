@@ -49,7 +49,7 @@
                   <div>
                     <v-row no-gutters class="pa-0">
                       <v-col align="center" align-self="center">
-                        <div class="pt-5">{{book.ticket_type}}</div>
+                        <div class="pt-5">{{$route.query.ticket_type}}</div>
                       </v-col>
                       <v-col align="center" align-self="center">
                         <div class="pt-5">
@@ -487,10 +487,10 @@
                   <div class="white--text">
                     <v-row>
                       <v-col>
-                        <div>Passenger 1 (Minor)</div>
+                        <div>Passenger 1 </div>
                       </v-col>
                       <v-col align="end">
-                        <div>456</div>
+                        <div>P <b>{{ $FormatPrice(book.departure_price) }}</b></div>
                       </v-col>
                     </v-row>
                   </div>
@@ -500,10 +500,10 @@
                   <div class="white--text">
                     <v-row>
                       <v-col>
-                        <div>Passenger 1 (Minor)</div>
+                        <div>Passenger 1 </div>
                       </v-col>
                       <v-col align="end">
-                        <div>456</div>
+                        <div>P <b>{{ $FormatPrice(book.return_price) }}</b></div>
                       </v-col>
                     </v-row>
                   </div>
@@ -511,7 +511,7 @@
                 <div>
                   <v-divider color="white"></v-divider>
                 </div>
-                <div class="pa-5">
+                <!-- <div class="pa-5">
                   <div class="white--text">
                     <v-row>
                       <v-col>
@@ -562,14 +562,14 @@
                       </v-col>
                     </v-row>
                   </div>
-                </div>
+                </div> -->
                 <v-divider color="white"></v-divider>
                 <div class="pt-5 pa-5">
                   <v-row>
                     <v-col align="end">
                       <div class="white--text">Total</div>
                       <div class="text-h6 white--text">
-                        P <b>{{ $FormatPrice(456) }}</b>
+                        P <b>{{ $FormatPrice(double.parse(book.departure_price) +500) }}</b>
                       </div>
                     </v-col>
                   </v-row>

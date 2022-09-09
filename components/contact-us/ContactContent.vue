@@ -6,17 +6,17 @@
                 HEAD OFFICE
             </div>
             <div class="pt-10">
-                Archipelago Philippine Ferries Corporation
+                Eva Macapagal Ferry Terminal, Surigao City, Philippines, 8400
             </div>
             <div class="pt-2">
-                6th Floor Unioil Center Bldg., Commerce Avenue corner
+                0970 684 1075
             </div>
             <div class="pt-2">
-                Acacia Avenue, Madrigal Business Park, Ayala Alabang,
+                evaristo.sons@gmail.com
             </div>
-            <div class="pt-2">
+            <!-- <div class="pt-2">
                 Muntinlupa City, 1780
-            </div>
+            </div> -->
         </v-col>
         <v-col>
             <div class="pt-16">

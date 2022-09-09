@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <v-navigation-drawer
-      v-if="$auth.loggedIn ? $auth.user.account_type == 'Admin' :false "
+      v-if="$auth.loggedIn ? $auth.user.account_type == 'Admin' : false"
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -24,7 +24,12 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar  v-if="$auth.loggedIn ? $auth.user.account_type == 'Admin' :false" :clipped-left="clipped" fixed app>
+    <v-app-bar
+      v-if="$auth.loggedIn ? $auth.user.account_type == 'Admin' : false"
+      :clipped-left="clipped"
+      fixed
+      app
+    >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <div align="start">
         <v-img
@@ -37,7 +42,7 @@
         />
       </div>
       <v-spacer />
-      <div class="px-10 pointer" >
+      <div class="px-10 pointer">
         <v-btn dark depressed color="secondary" @click="$auth.logout()">
           Logout
         </v-btn>
@@ -133,21 +138,15 @@
             class="mx-4 secondary--text"
             icon
           >
-            <v-icon size="24px">
+            <v-icon size="24px" @click="goToFb">
               {{ icon }}
             </v-icon>
           </v-btn>
         </v-card-text>
 
         <v-card-text class="black--text pt-0">
-          Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
-          Mauris cursus commodo interdum. Praesent ut risus eget metus luctus
-          accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim
-          a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula
-          lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus
-          iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum
-          tempor vel ut orci. Orci varius natoque penatibus et magnis dis
-          parturient montes, nascetur ridiculus mus.
+          Evaristo & Sons Sea Transport Corporation is a domestic shipping
+          company operating cargo and passenger ships
         </v-card-text>
 
         <v-divider></v-divider>
@@ -166,6 +165,9 @@
 <script>
 export default {
   methods: {
+    goToFb() {
+      location = "https://www.facebook.com/evaristoandsonsseatransportcorp";
+    },
     pushRoute(link) {
       window.location.href = `/${link}`;
     },
@@ -181,16 +183,11 @@ export default {
       fixed: false,
       iconFooter: [
         "mdi-facebook",
-        "mdi-twitter",
-        "mdi-linkedin",
-        "mdi-instagram",
+        // "mdi-twitter",
+        // "mdi-linkedin",
+        // "mdi-instagram",
       ],
       items: [
-        {
-          icon: "mdi-apps",
-          title: "Dashboard",
-          to: "/admin/dashboard",
-        },
         {
           icon: "mdi-chart-bubble",
           title: "Book",
