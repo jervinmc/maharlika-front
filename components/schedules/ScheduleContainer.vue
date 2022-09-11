@@ -202,7 +202,7 @@
                     <v-col>
                       <div>Price</div>
                       <div class="text-h6">
-                        P <b>{{ $FormatPrice(book.departure_price) }}</b>
+                        P <b>{{ $FormatPrice(parseInt(book.departure_price) * parseInt(book.passenger)) }}</b>
                       </div>
                     </v-col>
                     <!-- <v-col>
@@ -251,7 +251,7 @@
                     <v-col>
                       <div>Price</div>
                       <div class="text-h6">
-                        P <b>{{ $FormatPrice(book.return_price) }}</b>
+                        P <b>{{ $FormatPrice(  parseInt(book.return_price) * parseInt(book.passenger)) }}</b>
                       </div>
                     </v-col>
                     <!-- <v-col>
@@ -419,7 +419,7 @@
                     <v-col>
                       <div>Price</div>
                       <div class="text-h6">
-                        P <b>{{ $FormatPrice(book.departure_price) }}</b>
+                        P <b>{{ $FormatPrice(parseInt(book.departure_price) * parseInt(book.passenger)) }}</b>
                       </div>
                     </v-col>
                     <!-- <v-col>
@@ -468,7 +468,7 @@
                     <v-col>
                       <div>Price</div>
                       <div class="text-h6">
-                        P <b>{{ $FormatPrice(book.return_price) }}</b>
+                        P <b>{{ $FormatPrice(  parseInt(book.return_price) * parseInt(book.passenger)) }}</b>
                       </div>
                     </v-col>
                     <!-- <v-col>
@@ -487,10 +487,10 @@
                   <div class="white--text">
                     <v-row>
                       <v-col>
-                        <div>Passenger 1 </div>
+                        <div>Passenger {{book.passenger}} </div>
                       </v-col>
                       <v-col align="end">
-                        <div>P <b>{{ $FormatPrice(book.departure_price) }}</b></div>
+                        <div>P <b>{{ $FormatPrice(parseInt(book.departure_price) * parseInt(book.passenger))  }}</b></div>
                       </v-col>
                     </v-row>
                   </div>
@@ -500,10 +500,10 @@
                   <div class="white--text">
                     <v-row>
                       <v-col>
-                        <div>Passenger 1 </div>
+                        <div>Passenger {{book.passenger}} </div>
                       </v-col>
                       <v-col align="end">
-                        <div>P <b>{{ $FormatPrice(book.return_price) }}</b></div>
+                        <div>P <b>{{ $FormatPrice(  parseInt(book.return_price) * parseInt(book.passenger)) }}</b></div>
                       </v-col>
                     </v-row>
                   </div>
@@ -569,7 +569,7 @@
                     <v-col align="end">
                       <div class="white--text">Total</div>
                       <div class="text-h6 white--text">
-                        P <b>{{ $FormatPrice(double.parse(book.departure_price) +500) }}</b>
+                        P <b>{{ $FormatPrice( ( parseInt(book.return_price) + parseInt(book.departure_price))* parseInt(book.passenger)) }}</b>
                       </div>
                     </v-col>
                   </v-row>
@@ -597,10 +597,10 @@
                   <div class="white--text">
                     <v-row>
                       <v-col>
-                        <div>Passenger 1 (Minor)</div>
+                        <div>Passenger {{book.passenger}} (Minor)</div>
                       </v-col>
                       <v-col align="end">
-                        <div>456</div>
+                        <div>{{$FormatPrice(  parseInt(book.departure_price) * parseInt(book.passenger))}}</div>
                       </v-col>
                     </v-row>
                   </div>
@@ -610,10 +610,10 @@
                   <div class="white--text">
                     <v-row>
                       <v-col>
-                        <div>Passenger 1 (Minor)</div>
+                        <div>Passenger {{book.passenger}} (Minor)</div>
                       </v-col>
                       <v-col align="end">
-                        <div>456</div>
+                        <div>{{$FormatPrice(  parseInt(book.return_price) * parseInt(book.passenger))}}</div>
                       </v-col>
                     </v-row>
                   </div>
@@ -625,14 +625,14 @@
                   <div class="white--text">
                     <v-row>
                       <v-col>
-                        <div>1 X Passenger</div>
+                        <div>{{book.passenger}} X Passenger</div>
                       </v-col>
                       <v-col align="end">
-                        <div>912.00</div>
+                        <div>{{$FormatPrice( ( parseInt(book.departure_price) + parseInt(book.return_price)) * parseInt(book.passenger)) }}</div>
                       </v-col>
                     </v-row>
                   </div>
-                  <div class="white--text">
+                  <!-- <div class="white--text">
                     <v-row>
                       <v-col>
                         <div>Insurance Total</div>
@@ -671,7 +671,7 @@
                         <div>0</div>
                       </v-col>
                     </v-row>
-                  </div>
+                  </div> -->
                 </div>
                 <v-divider color="white"></v-divider>
                 <div class="pt-5 pa-5">
@@ -679,7 +679,7 @@
                     <v-col align="end">
                       <div class="white--text">Total</div>
                       <div class="text-h6 white--text">
-                        P <b>{{ $FormatPrice(456) }}</b>
+                        P <b>{{ $FormatPrice( ( parseInt(book.departure_price) + parseInt(book.return_price)) * parseInt(book.passenger)) }}</b>
                       </div>
                     </v-col>
                   </v-row>
@@ -721,6 +721,7 @@ export default {
       this.book.date_from = this.$route.query.depart;
       this.book.ticket_type = this.$route.query.ticket_type;
       this.book.date_to = this.$route.query.return;
+      this.book.passenger = this.$route.query.passenger;
       this.book.user_id = this.$auth.user.id;
     }
     this.searchTripDeparture();

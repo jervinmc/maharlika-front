@@ -6,6 +6,7 @@
       height="85vh"
       class="d-flex justify-start align-center pl-16"
     >
+      <v-btn @click="pdfDownload">try</v-btn>
       <v-row>
         <v-col>
           <v-card class="pa-5 rounded-xl" width="1000" height="" elevation="10">
@@ -142,19 +143,30 @@
                   <v-col>
                     Passenger
                     <div class="text-h5">
-                      <v-select :items="['1','2','3','4','5']" outlined v-model="book.passenger"></v-select>
+                      <v-select
+                        :items="['1', '2', '3', '4', '5']"
+                        outlined
+                        v-model="book.passenger"
+                      ></v-select>
                     </div>
                   </v-col>
                   <v-col>
                     With Vehicle
                     <div class="text-h5">
-                      <v-select :items="['Yes','No']" outlined v-model="book.isHasVehicle"></v-select>
+                      <v-select
+                        :items="['Yes', 'No']"
+                        outlined
+                        v-model="book.isHasVehicle"
+                      ></v-select>
                     </div>
                   </v-col>
                   <v-col>
                     Promo Code
                     <div class="text-h5">
-                      <v-text-field outlined v-model="book.promo_code"></v-text-field>
+                      <v-text-field
+                        outlined
+                        v-model="book.promo_code"
+                      ></v-text-field>
                     </div>
                   </v-col>
                 </v-row>
@@ -181,6 +193,7 @@
 </template>
 
 <script>
+import { jsPDF } from "jspdf";
 export default {
   data() {
     return {
@@ -216,6 +229,14 @@ export default {
     };
   },
   methods: {
+    pdfDownload() {
+      const doc = new jsPDF();
+
+      doc.text("Hello world!", 10, 10);
+      doc.save("a4.pdf");
+      // const fs = require("fs");
+      // const doc = new PDFDocument();
+    },
     searchTrip() {
       window.location.href = `/schedules?from=${this.book.from}&to=${this.book.to}&depart=${this.book.depart}&return=${this.book.return}&isHasVehicle=${this.book.isHasVehicle}&passenger=${this.book.passenger}&ticket_type=${this.book.ticket_type}`;
     },
